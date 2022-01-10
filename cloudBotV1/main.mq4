@@ -5,7 +5,7 @@
 //+------------------------------------------------------------------+
 #property copyright "Mansour Alnassre"
 #property link      "https://www.mansourcodes.com"
-#property version   "2.00"
+#property version   "1.00"
 #property strict
 
 
