@@ -124,7 +124,7 @@ void closeSellOrder()
 
    )
      {
-      Alert("[Close][Holded] kumo from current to end is blue ");
+      //Alert("[Close][Holded] kumo from current to end is blue ");
       return;
      }
 
@@ -147,7 +147,7 @@ void closeSellOrder()
 
 
       sell_currentOrderTicket = -1;
-      Alert("[Close] end of red is above blue: candle index: ");
+      //Alert("[Close] end of red is above blue: candle index: ");
      }
 
   }
@@ -187,7 +187,7 @@ int countBlackBelowCandles()
      }
 
 
-   Alert("[PASS] black below candle "+ counter);
+   //Alert("[PASS] black below candle "+ counter);
    return counter;
   }
 //+------------------------------------------------------------------+
@@ -216,17 +216,17 @@ bool isRedCrosedBlueDown()
 
    if(back_redLine  >  back_blueLine)
      {
-      Alert("[PASS] begin of red is upove blue: candle index: "+ lastCadleId);
+      //Alert("[PASS] begin of red is upove blue: candle index: "+ lastCadleId);
      }
    else
      {
-      Alert("[FAIL] begin of red and blue not match: candle index: "+ lastCadleId);
+      //Alert("[FAIL] begin of red and blue not match: candle index: "+ lastCadleId);
       return false;
      }
 
 
 
-   Alert("[PASS] red below blue ");
+   //Alert("[PASS] red below blue ");
    return true;
   }
 
@@ -244,15 +244,15 @@ bool isRedBelowBlue()
 
    if(front_redLine <  front_blueLine)
      {
-      Alert("[PASS] end of red is Below blue: candle index: "+ 0);
+      //Alert("[PASS] end of red is Below blue: candle index: "+ 0);
      }
    else
      {
-      Alert("[FAIL] end of red and blue not match: candle index: " + 0);
+      //Alert("[FAIL] end of red and blue not match: candle index: " + 0);
       return false;
      }
 
-   Alert("[PASS] red crossed blue ");
+   //Alert("[PASS] red crossed blue ");
    return true;
   }
 
@@ -275,13 +275,13 @@ bool isRedBelowKumo()
    )
      {
 
-      Alert("[PASS] red Below kumo");
+      //Alert("[PASS] red Below kumo");
       return true;
      }
 
 
 
-   Alert("[FAIL] not red Below kumo");
+   //Alert("[FAIL] not red Below kumo");
    return false;
 
 
@@ -328,13 +328,13 @@ bool countRedCrosedBlueDown(int passNumber)
    if(counterCross <= passNumber)
      {
 
-      Alert("[PASS] red crossed blue  !#"+counterCross + "  less then" + passNumber);
+      //Alert("[PASS] red crossed blue  !#"+counterCross + "  less then" + passNumber);
       return true;
      }
    else
      {
 
-      Alert("[Fail] red crossed blue  TO MANY !#"+counterCross + "NOT  less then" + passNumber);
+      //Alert("[Fail] red crossed blue  TO MANY !#"+counterCross + "NOT  less then" + passNumber);
       return false;
      }
 
@@ -366,13 +366,13 @@ bool isFrontKumoPink()
 
    if(front_skykumoLine <  front_pinkkumoLine)
      {
-      Alert("[PASS] front kumo is pink ");
+      //Alert("[PASS] front kumo is pink ");
       return true;
      }
 
 
 
-   Alert("[FAIL] front kumo NOT pink "+ shift);
+   //Alert("[FAIL] front kumo NOT pink "+ shift);
    return false;
 
   }
@@ -395,12 +395,12 @@ bool isCurrentKumoBlue()
 
    if(current_skykumoLine >  current_pinkkumoLine)
      {
-      Alert("[PASS] current candle kumo is blue : "+ 0);
+      //Alert("[PASS] current candle kumo is blue : "+ 0);
       return true;
      }
 
 
-   Alert("[FAIL] current candle kumo NOT blue "+ 0);
+   //Alert("[FAIL] current candle kumo NOT blue "+ 0);
    return false;
 
 
@@ -456,13 +456,13 @@ int countKumoCrosedToXCandleDown(int lastIndexCandle, int minValidCross)
 
    if(counterCross <= minValidCross)
      {
-      Alert("[PASS] kumo has crossed less then "+ minValidCross);
+      //Alert("[PASS] kumo has crossed less then "+ minValidCross);
       return true;
      }
    else
      {
 
-      Alert("[Fail] kumo has crossed TOO MANY  #"+ counterCross);
+      //Alert("[Fail] kumo has crossed TOO MANY  #"+ counterCross);
      }
 
    return false;
@@ -490,13 +490,13 @@ int isCandleBelowKumo()
    )
      {
 
-      Alert("[PASS] candle Below kumo");
+      //Alert("[PASS] candle Below kumo");
       return true;
      }
 
 
 
-   Alert("[FAIL] not candle Below kumo");
+   //Alert("[FAIL] not candle Below kumo");
    return false;
   }
 //+------------------------------------------------------------------+
@@ -519,13 +519,13 @@ bool isCandleBelowBlue()
    )
      {
 
-      Alert("[PASS] candle Below blue");
+      //Alert("[PASS] candle Below blue");
       return true;
      }
 
 
 
-   Alert("[FAIL] not candle Below blue");
+   //Alert("[FAIL] not candle Below blue");
    return false;
 
   }
@@ -550,7 +550,7 @@ bool isCandleInsideKumoSell()
    )
      {
 
-      Alert("[PASS] candle inside kumo");
+      //Alert("[PASS] candle inside kumo");
       return true;
      }
    else
@@ -561,13 +561,13 @@ bool isCandleInsideKumoSell()
       )
         {
 
-         Alert("[PASS] candle inside kumo");
+         //Alert("[PASS] candle inside kumo");
          return true;
         }
 
 
 
-   Alert("[FAIL] NOT candle inside kumo");
+   //Alert("[FAIL] NOT candle inside kumo");
    return false;
 
   }
@@ -600,10 +600,10 @@ void openSellOrder()
 
    if(sell_currentOrderTicket < 0)
      {
-      Alert("OrderSend failed with error #",GetLastError());
+      //Alert("OrderSend failed with error #",GetLastError());
      }
-   else
-      Alert("OrderSend placed successfully");
+   else{}
+      //Alert("OrderSend placed successfully");
 
   }
 //+------------------------------------------------------------------+
@@ -632,10 +632,10 @@ void updateSellOrder()
 
    if(!updated)
      {
-      Alert("order failed with error #",GetLastError());
+      //Alert("order failed with error #",GetLastError());
      }
-   else
-      Alert("Order update successfully");
+   else{}
+      //Alert("Order update successfully");
 
 
   }
@@ -654,14 +654,14 @@ bool noOrderSellOpen()
         {
          if(OrderMagicNumber() == sell_MagicNumber)
            {
-            Alert("[FAIL] you  can open order");
+            //Alert("[FAIL] you  can open order");
             return false;
            }
         }
      }
 
 
-   Alert("[PASS] you  can open order");
+   //Alert("[PASS] you  can open order");
    return true;
 
   }
@@ -740,7 +740,7 @@ bool newSellCandle()
      }
    else
      {
-      Alert("[Pass] newSellCandle " + Open[0]);
+      //Alert("[Pass] newSellCandle " + Open[0]);
       sell_currentCandleOpenPrice = Open[0];
       return true;
      }
