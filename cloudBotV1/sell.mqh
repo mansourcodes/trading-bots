@@ -16,8 +16,8 @@
 double sell_lotSize = 0.1;
 
 bool sell_disableStopLoss = false;
-bool sell_activeKijunStopLoss = true;
-int sell_stoplossPips = 30;
+bool sell_activeKijunStopLoss = false;
+int sell_stoplossPips = 100;
 
 int sell_takeprofitPips = 20;
 

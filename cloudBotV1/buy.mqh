@@ -14,9 +14,9 @@
 
 double lotSize = 0.1;
 
-bool disableStopLoss = true;
+bool disableStopLoss = false;
 bool activeKijunStopLoss = false;
-int stoplossPips = 30;
+int stoplossPips = 100;
 
 int takeprofitPips = 20;
 
