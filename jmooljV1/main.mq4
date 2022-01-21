@@ -15,7 +15,7 @@
 //+------------------------------------------------------------------+
 
 double lotSize = 0.03;
-double targetedProfit = 0.3;
+double targetedProfit = 0.5;
 int totalOpenOrders = 20;
 double RsiDeffMargen = 1;
 
@@ -28,6 +28,7 @@ double price,Slippage,currentCandleOpenPrice;
 void OnTick()
   {
 //---
+
 
    loopOrders();
 
@@ -68,17 +69,20 @@ double RsiStatus(ENUM_TIMEFRAMES timeframe)
    double _1_RSI = iRSI(NULL,timeframe,14,PRICE_CLOSE,1);
    double deff = currentRSI - _1_RSI;
 
-   if(deff >= RsiDeffMargen && currentRSI < 50)
+
+
+
+   if(deff >= RsiDeffMargen && currentRSI > 40 )
      {
       return OP_BUY;
      }
 
-   if(deff <= (RsiDeffMargen * -1) && currentRSI > 50)
+   if(deff <= (RsiDeffMargen * -1)  && currentRSI < 60)
      {
       return OP_SELL;
      }
 
-   return -1;
+   return NULL;
   }
 //+------------------------------------------------------------------+
 
@@ -152,19 +156,13 @@ int forceCloseOrder()
 //+------------------------------------------------------------------+
 void openOrder()
   {
-   op = NULL;
+
 
    int op_m1 = RsiStatus(PERIOD_M1);
    int op_m15 = RsiStatus(PERIOD_M15);
 
-   if(op_m1 == -1 || op_m15 == -1)
-     {
-      reset();
-      return;
-     }
 
-
-   if(op_m15 == op_m1)
+   if(op_m15 == op_m1 && op_m1 != -1)
      {
       op = op_m1;
      }
@@ -175,24 +173,29 @@ void openOrder()
       return;
      }
 
-//*/
-
    if(op == OP_BUY)
      {
       price = Ask;
      }
-   if(op == OP_SELL)
+   else
      {
-      price = Bid;
+      if(op == OP_SELL)
+        {
+         Alert("SEll order op");
+         price = Bid;
+        }
+      else
+        {
+         price = 0;
+        }
      }
 
 
-
-// if(trendKijunsen() != op  && trendKijunsen() != NULL)
-//   {
-//    reset();
-//  return;
-//   }
+  // if(trendKijunsen() != op  && trendKijunsen() != NULL)
+  //   {
+  //    reset();
+    //  return;
+  //   }
 
    OrderSend(
       _Symbol,              // symbol
@@ -247,8 +250,8 @@ void checkOrder()
       double minutes = gap/60;
 
       if(
-         OrderProfit() < (0.5 * 80 * -1)
-         && minutes > 15
+      OrderProfit() < ( 80 * -1)
+      && minutes > 15
       )
         {
          forceCloseOrder();
@@ -269,7 +272,7 @@ bool isNewCandle()
 
    if(currentCandleOpenPrice == Open[0])
      {
-
+      
       return false;
      }
    else
@@ -318,9 +321,9 @@ int trendKijunsen()
 //+------------------------------------------------------------------+
 void reset()
   {
-
+   
 // reset curent candle
-   currentCandleOpenPrice = 0;
+ //currentCandleOpenPrice = 0;
    return;
 
   }
